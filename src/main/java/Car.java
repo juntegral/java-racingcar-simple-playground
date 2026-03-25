@@ -15,11 +15,14 @@ public class Car {
         }
     }
 
-    // 새롭게 추가된 이동 로직
     public void move(final int randomNumber) {
         if (randomNumber >= MaxPosition) {
             this.position++;
         }
+    }
+
+    public boolean isSamePosition(final int targetPosition) {
+        return this.position == targetPosition;
     }
 
     public String getName() {
