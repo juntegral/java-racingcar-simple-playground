@@ -47,4 +47,40 @@ class CarsTest {
         // then: 포비, 크롱 공동 우승 확인
         assertThat(winners).containsExactly(pobi, crong);
     }
+
+    @Test
+    @DisplayName("NumberGenerator가 무조건 4를 반환하면 모든 자동차가 1칸씩 전진한다.")
+    void 모든_자동차_전진_테스트() {
+        // given
+        Car pobi = new Car("pobi");
+        Car crong = new Car("crong");
+        Cars cars = new Cars(Arrays.asList(pobi, crong));
+
+        NumberGenerator alwaysMoveGenerator = () -> 4;
+
+        // when
+        cars.moveAll(alwaysMoveGenerator);
+
+        // then
+        assertThat(pobi.getPosition()).isEqualTo(1);
+        assertThat(crong.getPosition()).isEqualTo(1);
+    }
+
+    @Test
+    @DisplayName("NumberGenerator가 무조건 3을 반환하면 모든 자동차가 정지한다.")
+    void 모든_자동차_정지_테스트() {
+        // given
+        Car pobi = new Car("pobi");
+        Car crong = new Car("crong");
+        Cars cars = new Cars(Arrays.asList(pobi, crong));
+
+        NumberGenerator alwaysStopGenerator = () -> 3;
+
+        // when
+        cars.moveAll(alwaysStopGenerator);
+
+        // then
+        assertThat(pobi.getPosition()).isEqualTo(0);
+        assertThat(crong.getPosition()).isEqualTo(0);
+    }
 }
