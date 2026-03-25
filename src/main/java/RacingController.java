@@ -1,17 +1,15 @@
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
 import java.util.Scanner;
 
 public class RacingController {
     private static final Scanner scanner = new Scanner(System.in);
-    private static final Random random = new Random();
+    private final NumberGenerator numberGenerator = new RandomNumberGenerator();
 
     public void run() {
         System.out.println("경주할 자동차 이름을 입력하세요(이름은 쉼표(,)를 기준으로 구분).");
         String input = scanner.nextLine();
-        List<Car> carList = createCars(input.split(","));
-        Cars cars = new Cars(carList);
+        Cars cars = new Cars(createCars(input.split(",")));
 
         System.out.println("시도할 회수는 몇회인가요?");
         int tryCount = scanner.nextInt();
@@ -31,13 +29,13 @@ public class RacingController {
     private void play(Cars cars, int tryCount) {
         System.out.println("\n실행 결과");
         for (int i = 0; i < tryCount; i++) {
-            moveAndPrint(cars);
+            cars.moveAll(numberGenerator);
+            printCars(cars);
         }
     }
 
-    private void moveAndPrint(Cars cars) {
+    private void printCars(Cars cars) {
         for (Car car : cars.getCars()) {
-            car.move(random.nextInt(10));
             System.out.println(car.getName() + " : " + "-".repeat(car.getPosition()));
         }
         System.out.println();
