@@ -35,4 +35,10 @@ public class Cars {
     public List<Car> getCars() {
         return cars;
     }
+
+    public void moveAll(final NumberGenerator numberGenerator) {
+        for (Car car : cars) {
+            car.move(numberGenerator.generate()); // indent 1 유지
+        }
+    }
 }
