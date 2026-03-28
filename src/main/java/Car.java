@@ -1,5 +1,5 @@
 public class Car {
-    private static final int MaxPosition= 4;
+    private static final int MAX_POSITION = 4;
     private final String name;
     private int position;
 
@@ -15,14 +15,14 @@ public class Car {
         }
     }
 
-    public void move(final int randomNumber) {
-        if (randomNumber >= MaxPosition) {
+    public void move(final NumberGenerator numberGenerator) {
+        if (numberGenerator.generate() >= MAX_POSITION) {
             this.position++;
         }
     }
 
-    public boolean isSamePosition(final int targetPosition) {
-        return this.position == targetPosition;
+    public boolean isSamePosition(final Car otherCar) {
+        return this.position == otherCar.getPosition();
     }
 
     public String getName() {
