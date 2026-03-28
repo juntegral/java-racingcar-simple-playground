@@ -4,7 +4,7 @@ import java.util.Scanner;
 
 public class RacingController {
     private static final Scanner scanner = new Scanner(System.in);
-    private final NumberGenerator numberGenerator = new RandomNumberGenerator();
+    private static final NumberGenerator numberGenerator = new RandomNumberGenerator();
 
     public void run() {
         System.out.println("경주할 자동차 이름을 입력하세요(이름은 쉼표(,)를 기준으로 구분).");
